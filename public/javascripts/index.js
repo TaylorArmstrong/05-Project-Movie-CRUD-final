@@ -25,7 +25,6 @@ function getMovies() {
       let edit_button = document.createElement('button')
       let del_button = document.createElement('button')
 
-      console.log('movie>>>', movie)
       title.innerText = movie.Title
       director.innerText = movie.Director
       year.innerText = movie.Year
@@ -36,8 +35,9 @@ function getMovies() {
         let movieId = ev.target.getAttribute('data-id')
         axios.get(`${url}/movies/${movieId}`)
           .then((movie) => {
-            console.log('movie>>>', movie)
+            console.log('move.data.poster_URL>>>', movie.data[0].poster_URL)
             let editMovieForm = document.getElementById('viewField')
+            editMovieForm.innerHTML = ``
             editMovieForm.innerHTML = `<form class='col s12' id='editForm'>
             <div class='input-field col s6'><input value ='${movie.data[0].Title}' id='Title' type='text' class='validate'>
           </div>
@@ -64,13 +64,38 @@ function getMovies() {
             </div>
           </div>
           <div class'col s4'>
-
+            <img src=${movie.data[0].poster_URL}>
           </div>
         </div>
         <div class='aside col s4'>
         <button type='submit' class='btn btn-primary'>Edit Movie Info</button>
         </form>`
-      // <img src='${movie.data[0].poster_URL}'>
+
+        let editForm = document.getElementById('editForm')
+        editForm.addEventListener('submit', (ev) => {
+          ev.preventDefault()
+
+            let movieData = {}
+            let formElements = ev.target.elements
+            console.log('formElements>>>', formElements)
+            for( let i = 0; i < formElements.length; i++) {
+              let inputTitle = formElements[i].id
+              if( inputTitle ) {
+                movieData[inputTitle] = formElements[i].value
+              }
+            }
+            console.log('movieData>', movieData)
+
+            // post data to database
+            axios.put(`${url}/movies/${movieId}`, movieData)
+              .then((response) => {
+                getMovies()
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+          })
+
       })
     })
       del_button.innerText = 'X'
@@ -106,7 +131,6 @@ function formSubmit() {
 
     let movieData = {}
     let formElements = ev.target.elements
-    console.log('formElements>>>', formElements)
     for( let i = 0; i < formElements.length; i++) {
       let inputTitle = formElements[i].id
       if( inputTitle ) {
@@ -125,65 +149,3 @@ function formSubmit() {
       })
   })
 }
-
-function editMovie() {
-  let editForm = document.getElementById('editForm')
-  editMovieForm.addEventListener('submit', (ev) => {
-    ev.preventDefault()
-
-      let movieData = {}
-      let formElements = ev.target.elements
-      console.log('formElements>>>', formElements)
-      for( let i = 0; i < formElements.length; i++) {
-        let inputTitle = formElements[i].id
-        if( inputTitle ) {
-          movieData[inputTitle] = formElements[i].value
-        }
-      }
-      console.log('movieData>', movieData)
-
-      // post data to database
-      // axios.put(`${url}/${movieId}`, movieData)
-      //   .then((response) => {
-      //     getMovies()
-      //   })
-      //   .catch((err) => {
-      //     console.log(err)
-      //   })
-    })
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(document).ready( function() {
-// 	$(`#btn-go`).click((event) => {
-// 		$.ajax({
-// 			url: `/tablename`,
-// 			type: `GET`,
-// 			success: (data) => {
-// 				console.log(data)
-// 				// UPDATE DOM
-// 				$(`doohickey`).append(data)
-// 			},
-// 			error: function(jgXhr, textStatus, errorThrown) {
-// 				console.log(`OOPS:`, errorThrown)
-// 			}
-// 		})
-// 	})
-// })
