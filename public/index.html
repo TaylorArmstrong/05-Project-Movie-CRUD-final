@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css'>
+    <script src='./javascripts/index.js' charset="utf-8"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js' charset='utf-8'></script>
+  </head>
+  <body>
+    <h1>Inconceivable Film Ratings</h1>
+    <p>Welcome to Movie Ratings for Beginners</p>
+    <div class='row'>
+    <h3>All Movies</h3>
+    <a id='allMovies' class="waves-effect waves-light btn">All Movies</a>
+  </div>
+  <div class='row' id='viewField'>
+   <form class='col s12' id='myForm'>
+     <div class='row'>
+       <div class='input-field col s6'>
+         <input placeholder='Movie Title' id='Title' type='text' class='validate'>
+         <label for='Title'></label>
+       </div>
+       <div class='input-field col s6'>
+         <input placeholder='Director' id='Director' type='text' class='validate'>
+         <label for='Director'></label>
+       </div>
+     </div>
+     <div class='row'>
+       <div class='input-field col s12'>
+         <input placeholder='Year' id='Year' type='number' class='validate'>
+       </div>
+     </div>
+     <div class='row'>
+       <div class='input-field col s12'>
+         <input placeholder='My Rating' id='My_Rating' type='number' class='validate'>
+       </div>
+     </div>
+     <div class='row'>
+       <div class='input-field col s12'>
+         <input placeholder='Poster URL' id='poster_URL' type='url' class='validate'>
+       </div>
+     </div>
+     <button type='submit' class='btn btn-primary'>Submit Movie Info</button>
+   </form>
+  </div>
+  <table class="striped">
+      <thead>
+        <tr>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Year</th>
+            <th>My Rating</th>
+            <th></th>
+            <th></th>
+        </tr>
+      </thead>
+      <tbody class='movieList'>
+        <tr>
+          <td>Schizopolis</td>
+          <td>Steven Soderbergh</td>
+          <td>1976</td>
+          <td>4</td>
+          <td><a class="waves-effect waves-light btn">Delete</a></td>
+          <td><a class="waves-effect waves-light btn">Edit</a></td>
+        </tr>
+        <tr>
+          <td>Nashville</td>
+          <td>Robert Altman</td>
+          <td>1976</td>
+          <td>5</td>
+          <td><a class="waves-effect waves-light btn">Delete</a></td>
+          <td><a class="waves-effect waves-light btn">Edit</a></td>
+        </tr>
+        <tr>
+          <td>Idiocracy</td>
+          <td>Mike Judge</td>
+          <td>2006</td>
+          <td>5</td>
+          <td><a class="waves-effect waves-light btn">Delete</a></td>
+          <td><a class="waves-effect waves-light btn">Edit</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
