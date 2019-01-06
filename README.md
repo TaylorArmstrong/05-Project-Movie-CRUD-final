@@ -1,5 +1,4 @@
 <h1>05-Project-Movie-CRUD-final</h1>
-<h3>By Taylor Armstrong</h3>
 
 
 <h2>Front End Setup</h2>
