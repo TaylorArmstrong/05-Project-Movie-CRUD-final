@@ -1,7 +1,7 @@
 <h1>05-Project-Movie-CRUD-final</h1>
 <h2>By Taylor Armstrong</h2>
 
-<h3><u>To Run Project</u></h3>
+
 <h2>Front End Setup</h2>
 git clone 
 cd 05-Project-Movie-CRUD-final
